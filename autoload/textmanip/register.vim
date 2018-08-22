@@ -6,8 +6,8 @@ function! s:Register.use(reg) "{{{1
   let self.type    = ''
   let self._modified = 0
   let self._org      = {
-        \ "content": getreg(a:reg, 1),
-        \ "type":    getregtype(a:reg)
+        \ 'content': getreg(a:reg, 1),
+        \ 'type':    getregtype(a:reg)
         \ }
   return copy(self)
 endfunction

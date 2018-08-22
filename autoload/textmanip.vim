@@ -6,8 +6,10 @@ function! s:getpos(mode) "{{{1
     let s = getpos('.')
     return [s, s]
   endif
-  exe 'normal! gvo' | let s = getpos('.') | exe "normal! \<Esc>"
-  exe 'normal! gvo' | let e = getpos('.') | exe "normal! \<Esc>"
+
+  execute 'normal! gvo' | let s = getpos('.') | execute "normal! \<Esc>"
+  execute 'normal! gvo' | let e = getpos('.') | execute "normal! \<Esc>"
+
   return [s, e]
 endfunction
 "}}}
@@ -29,11 +31,11 @@ function! s:TM.start(action, dir, mode, emode) "{{{1
     let options = textmanip#options#replace(opts)
 
     let env = {
-          \ "action": a:action ==# 'move1' ? 'move' : a:action,
-          \ "dir":    a:dir,
-          \ "mode":   a:mode ==# 'x' ? visualmode() : a:mode,
-          \ "emode":  (a:emode ==# 'auto') ? g:textmanip_current_mode : a:emode,
-          \ "count":  v:count1,
+          \ 'action': a:action ==# 'move1' ? 'move' : a:action,
+          \ 'dir':    a:dir,
+          \ 'mode':   a:mode ==# 'x' ? visualmode() : a:mode,
+          \ 'emode':  (a:emode ==# 'auto') ? g:textmanip_current_mode : a:emode,
+          \ 'count':  v:count1,
           \ }
     call self.init(env)
     call self.manip()
@@ -76,7 +78,7 @@ function! s:TM.init(env) "{{{1
   let self.height     = self.pos['v'].line - self.pos['^'].line + 1
   let self.width      = self.pos['>'].colm - self.pos['<'].colm + 1
   let self.linewise   = self.is_linewise()
-  let self.continuous = get(b:, "textmanip_status", {}) == self.state()
+  let self.continuous = get(b:, 'textmanip_status', {}) == self.state()
   return self
 endfunction
 
@@ -249,10 +251,10 @@ function! s:TM.move() "{{{1
   endif
 
   let [ _yank, _last ] = {
-        \ "^": ['^ -c:  ', 'v -c:  '],
-        \ "v": ['v +c:  ', '^ +c:  '],
-        \ ">": ['>   :+c', '<   :+c'],
-        \ "<": ['<   :-c', '>   :-c'],
+        \ '^': ['^ -c:  ', 'v -c:  '],
+        \ 'v': ['v +c:  ', '^ +c:  '],
+        \ '>': ['>   :+c', '<   :+c'],
+        \ '<': ['<   :-c', '>   :-c'],
         \ }[dir]
   call self
         \.yank(_yank).modify().paste().finish(_last)
@@ -271,10 +273,10 @@ function! s:TM.duplicate() "{{{1
   if emode ==# 'insert'
     call self.insert_blank(dir, self[self.toward ==# '^v' ? 'height' : 'width'] * c)
     let _paste = {
-          \ "^": ['v +h*(c-1):        '                   ],
-          \ "v": ['^ +h      :        ', 'v +(h*c):      '],
-          \ ">": ['<         :+w      ', '>       :+(w*c)'],
-          \ "<": ['>         :+w*(c-1)'                   ],
+          \ '^': ['v +h*(c-1):        '                   ],
+          \ 'v': ['^ +h      :        ', 'v +(h*c):      '],
+          \ '>': ['<         :+w      ', '>       :+(w*c)'],
+          \ '<': ['>         :+w*(c-1)'                   ],
           \ }[dir]
   else
     " replace
@@ -287,10 +289,10 @@ function! s:TM.duplicate() "{{{1
     endif
 
     let _paste = {
-          \ "^": ['^ -(h*c):  ', 'v -h    :      '],
-          \ "v": ['^ +h    :  ', 'v +(h*c):      '],
-          \ ">": ['<       :+w', '>       :+(w*c)'],
-          \ "<": ['>       :-w', '<       :-(w*c)'],
+          \ '^': ['^ -(h*c):  ', 'v -h    :      '],
+          \ 'v': ['^ +h    :  ', 'v +(h*c):      '],
+          \ '>': ['<       :+w', '>       :+(w*c)'],
+          \ '<': ['>       :-w', '<       :-(w*c)'],
           \ }[dir]
   endif
   call self.modify().paste(_paste).finish()
@@ -302,8 +304,8 @@ function! s:TM.blank() "{{{1
   " instruction and select() pattern to be consistent
   " to other action.
   let _last = {
-        \ "^": [ '^ +c:', 'v +c:'],
-        \ "v": [ 'v :           '],
+        \ '^': [ '^ +c:', 'v +c:'],
+        \ 'v': [ 'v :           '],
         \ }[self.env.dir]
   call self.finish(_last)
 endfunction
@@ -321,7 +323,7 @@ function! textmanip#mode(...) "{{{1
 
   let g:textmanip_current_mode =
         \ g:textmanip_current_mode ==# 'insert' ? 'replace' : 'insert'
-  echo "textmanip-mode: " . g:textmanip_current_mode
+  echo 'textmanip-mode: ' . g:textmanip_current_mode
 endfunction
 "}}}
 " vim: foldmethod=marker

@@ -1,5 +1,5 @@
 function! s:SID() "{{{1
-  let fullname = expand("<sfile>")
+  let fullname = expand('<sfile>')
   return matchstr(fullname, '<SNR>\d\+_')
 endfunction
 "}}}
@@ -33,7 +33,7 @@ endfunction
 function! s:toward(dir) "{{{1
   return
         \ a:dir =~#  '\^\|v' ? '^v' :
-        \ a:dir =~#   '>\|<' ? '<>' : throw
+)        \ a:dir =~#   '>\|<' ? '<>' : throw
 endfunction
 
 function! s:template(string, vars) "{{{1
@@ -44,17 +44,16 @@ endfunction
 function! s:define_type_checker() "{{{1
   " dynamically define s:isNumber(v)  etc..
   let types = {
-        \ "Number":     0,
-        \ "String":     1,
-        \ "Funcref":    2,
-        \ "List":       3,
-        \ "Dictionary": 4,
-        \ "Float":      5,
+        \ 'Number':     type(0)              ,
+        \ 'String':     type('')             ,
+        \ 'Funcref':    type(function('max')),
+        \ 'List':       type([])             ,
+        \ 'Dictionary': type({})             ,
+        \ 'Float':      type(1.0)            ,
         \ }
 
   for [type, number] in items(types)
-    let s = ''
-    let s .= 'function! s:is' . type . '(v)' . "\n"
+    let s  = 'function! s:is' . type . '(v)' . "\n"
     let s .= '  return type(a:v) ==# ' . number . "\n"
     let s .= 'endfunction' . "\n"
     execute s
@@ -62,7 +61,7 @@ function! s:define_type_checker() "{{{1
 endfunction
 "}}}
 call s:define_type_checker()
-unlet! s:define_type_checker
+delfunction s:define_type_checker
 
 function! s:toList(arg)
   return s:isList(a:arg) ? a:arg : [a:arg]
@@ -71,14 +70,14 @@ endfunction
 let s:functions = [
       \ 'opposite',
       \ 'toward',
-      \ "isNumber",
-      \ "isString",
-      \ "isFuncref",
-      \ "isList",
-      \ "isDictionary",
-      \ "isFloat",
-      \ "toList",
-      \ "template",
+      \ 'isNumber',
+      \ 'isString',
+      \ 'isFuncref',
+      \ 'isList',
+      \ 'isDictionary',
+      \ 'isFloat',
+      \ 'toList',
+      \ 'template',
       \ ]
 
 let s:Util = {}

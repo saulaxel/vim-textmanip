@@ -70,7 +70,7 @@ VARIABLES						*textmanip-variables*
 	Default: value of |g:textmanip_startup_mode|.[
 
 	This var store current mode.
-	To change current mode, use |:TextmanipToggleMode| or 
+	To change current mode, use |:TextmanipToggleMode| or
 	<Plug>(textmanip-toggle-mode).
 
 *g:textmanip_move_ignore_shiftwidth*
@@ -89,7 +89,7 @@ VARIABLES						*textmanip-variables*
 	[Experimental]
 	Default: {}
 
-	{key}:	 Name of hook point. currently only 'finish' is available.
+	{key}:	 Name of hook point. Currently only 'finish' is available.
 	{value}: |Funcref|
 
 	example~
@@ -113,7 +113,7 @@ VARIABLES						*textmanip-variables*
 ==============================================================================
 MAPPINGS						    *textmanip-mappings*
 
-all mappings accept |count| which specify number of 'duplication' or
+All mappings accept |count| which specify number of 'duplication' or
 amount of 'movement'.
 
 ------------------------------------------------------------------------------
@@ -216,7 +216,7 @@ FUNCTION						 *textmanip-functions*
 textmanip#mode()
 	Simply return value of |g:textmanip_current_mode|.
 	It could be use to indicate current mode in |'statusline'|.
-									      
+
 ==============================================================================
 COMMAND							    *textmanip-command*
 
@@ -261,7 +261,7 @@ Advanced
 	nmap <D-d> <Plug>(textmanip-duplicate-down)
 	xmap <D-D> <Plug>(textmanip-duplicate-up)
 	xmap <D-d> <Plug>(textmanip-duplicate-down)
-				 
+
 	" move with jkhl
 	xmap <C-k> <Plug>(textmanip-move-up)
 	xmap <C-j> <Plug>(textmanip-move-down)
@@ -353,7 +353,7 @@ from
 
 to
 >
-	let case = 
+	let case =
 	      \ (s.line() <= e.line()) && (s.col() <=  e.col()) ? 1 :
 	      \ (s.line() >= e.line()) && (s.col() >=  e.col()) ? 2 :
 	      \ (s.line() <= e.line()) && (s.col() >=  e.col()) ? 3 :
@@ -366,10 +366,10 @@ Case2~
 
 from
 >
-	if     case ==# 1 | let [u, d, l, r ] = [ s, e, s, e ] 
-	elseif case ==# 2 | let [u, d, l, r ] = [ e, s, e, s ] 
-	elseif case ==# 3 | let [u, d, l, r ] = [ s, e, e, s ] 
-	elseif case ==# 4 | let [u, d, l, r ] = [ e, s, s, e ] 
+	if     case ==# 1 | let [u, d, l, r ] = [ s, e, s, e ]
+	elseif case ==# 2 | let [u, d, l, r ] = [ e, s, e, s ]
+	elseif case ==# 3 | let [u, d, l, r ] = [ s, e, e, s ]
+	elseif case ==# 4 | let [u, d, l, r ] = [ e, s, s, e ]
 	endif
 
 to

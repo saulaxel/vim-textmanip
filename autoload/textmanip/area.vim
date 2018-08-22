@@ -58,7 +58,7 @@ function! s:Area.add(dir, val) "{{{1
   endif
 
   if a:dir ==# 'v'
-    call self.data(self.data() + lis) 
+    call self.data(self.data() + lis)
     return self
   endif
 

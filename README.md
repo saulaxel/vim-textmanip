@@ -1,7 +1,7 @@
 # Move/Duplicate text intuitively.
   * Move selected lines or block area to specified direction ( up/down/right/left ).
   * Duplicate selected lines or block to specified direction ( up/down/right/left ).
-  * Two mode: inesrt or replace
+  * Two mode: insert or replace
   * Count support
   * Keep original cursor position (include 'o'ther pos in visualmode!) while moving / duplicating.
   * Undo with one 'u' by undojoining.
@@ -99,12 +99,12 @@ xmap <D-K> <Plug>(textmanip-duplicate-up)
 xmap <D-J> <Plug>(textmanip-duplicate-down)
 xmap <D-H> <Plug>(textmanip-duplicate-left)
 xmap <D-L> <Plug>(textmanip-duplicate-right)
-                              
+
 xmap  <Up>    <Plug>(textmanip-move-up-r)
 xmap  <Down>  <Plug>(textmanip-move-down-r)
 xmap  <Left>  <Plug>(textmanip-move-left-r)
 xmap  <Right> <Plug>(textmanip-move-right-r)
-                              
+
 nmap <C-s> <Plug>(textmanip-toggle-mode)
 xmap <C-s> <Plug>(textmanip-toggle-mode)
 ```

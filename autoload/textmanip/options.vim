@@ -3,7 +3,7 @@ let s:Options = {}
 function! s:Options.new() "{{{1
   let self._opts = {}
   return copy(self)
-endfunction 
+endfunction
 
 function! s:Options.replace(opts) "{{{1
   let curbuf = bufname('')

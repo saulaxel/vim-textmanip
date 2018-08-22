@@ -1,5 +1,5 @@
 " GUARD: {{{1
-if expand("%:p") ==# expand("<sfile>:p")
+if expand('%:p') ==# expand('<sfile>:p')
   unlet! g:loaded_textmanip
 endif
 if exists('g:loaded_textmanip')
@@ -13,11 +13,11 @@ set cpo&vim
 " VARIABLES: {{{1
 let g:textmanip_debug = 0
 let s:global_variables = {
-      \ "textmanip_enable_mappings" : 0,
-      \ "textmanip_startup_mode"    : "insert",
-      \ "textmanip_move_ignore_shiftwidth" : 0,
-      \ "textmanip_move_shiftwidth" : 1,
-      \ "textmanip_hooks" : {},
+      \ 'textmanip_enable_mappings' : 0,
+      \ 'textmanip_startup_mode'    : 'insert',
+      \ 'textmanip_move_ignore_shiftwidth' : 0,
+      \ 'textmanip_move_shiftwidth' : 1,
+      \ 'textmanip_hooks' : {},
       \ }
 "}}}
 
@@ -33,9 +33,9 @@ let g:textmanip_current_mode = g:textmanip_startup_mode
 
 " KEYMAP: {{{1
 let s:plug_suffix = {
-      \ "auto":    '',
-      \ "insert":  '-i',
-      \ "replace": '-r',
+      \ 'auto':    '',
+      \ 'insert':  '-i',
+      \ 'replace': '-r',
       \ }
 
 let s:keymap_config = {}
@@ -106,7 +106,7 @@ function! s:obsolete(what) "{{{1
   if a:what ==# '1col'
     let msg .= "  '<Plug>(textmanip-move-*-1col)' is obsolete\n"
     let msg .= "  '<Plug>(textmanip-move1-*)' for 1col movement\n"
-    echohl ErrorMsg 
+    echohl ErrorMsg
     echo msg
     echohl None
   endif
@@ -126,7 +126,7 @@ if g:textmanip_enable_mappings
   xmap <C-h> <Plug>(textmanip-move-left)
   xmap <C-l> <Plug>(textmanip-move-right)
 
-  let prefix = has('gui_macvim') ? "D" : "M"
+  let prefix = has('gui_macvim') ? 'D' : 'M'
   execute printf("nmap \<%s-d> <Plug>(textmanip-duplicate-down)", prefix)
   execute printf("nmap \<%s-D> <Plug>(textmanip-duplicate-up)",   prefix)
   execute printf("xmap \<%s-d> <Plug>(textmanip-duplicate-down)", prefix)
